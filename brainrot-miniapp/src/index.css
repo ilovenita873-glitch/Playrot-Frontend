@@ -1,0 +1,318 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 247 244 255;
+  --card: 255 255 255;
+  --raise: 236 230 252;
+  --ink: 28 20 56;
+  --muted: 108 98 150;
+  --brand: 109 59 255;
+  --accent: 240 110 20;
+  --good: 12 150 100;
+  --bad: 220 38 70;
+}
+.dark {
+  --bg: 20 14 43;
+  --card: 33 25 66;
+  --raise: 47 37 90;
+  --ink: 244 240 255;
+  --muted: 163 153 205;
+  --brand: 140 100 255;
+  --accent: 255 138 61;
+  --good: 52 211 153;
+  --bad: 251 83 110;
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: rgb(var(--bg));
+  color: rgb(var(--ink));
+  font-family: 'Manrope', system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+  user-select: none;
+}
+input { user-select: text; }
+
+@layer components {
+  .card { @apply rounded-2xl bg-card border border-raise; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 font-extrabold text-sm transition active:scale-95 disabled:opacity-40 disabled:active:scale-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand; }
+  .btn-primary { @apply btn bg-accent text-white; }
+  .btn-brand { @apply btn bg-brand text-white; }
+  .btn-ghost { @apply btn bg-raise text-ink; }
+  .chip { @apply rounded-lg bg-raise px-3 py-1.5 text-xs font-bold text-ink transition active:scale-95; }
+  .chip-on { @apply bg-brand text-white; }
+  .h-display { @apply font-display font-extrabold tracking-tight; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* ===== Playrot neon tema — index.css oxiriga qo'shing ===== */
+:root {
+  --bg: #0a0614;
+  --bg-2: #120a24;
+  --card: #1a1033;
+  --card-2: #231547;
+  --line: rgba(167, 139, 250, 0.22);
+  --primary: #8b5cf6;
+  --primary-2: #c084fc;
+  --cyan: #22d3ee;
+  --pink: #f472b6;
+  --gold: #fbbf24;
+  --text: #f5f3ff;
+  --muted: #a89fd0;
+  --rarity-common: #94a3b8;
+  --rarity-uncommon: #4ade80;
+  --rarity-rare: #38bdf8;
+  --rarity-epic: #c084fc;
+  --rarity-legendary: #fbbf24;
+  --rarity-mythic: #f43f5e;
+}
+
+body {
+  background:
+    radial-gradient(900px 400px at 50% -100px, rgba(139, 92, 246, 0.28), transparent 70%),
+    radial-gradient(600px 300px at 100% 40%, rgba(34, 211, 238, 0.10), transparent 70%),
+    var(--bg);
+  color: var(--text);
+}
+
+/* ---------- Header ---------- */
+.pr-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px;
+  background: rgba(10, 6, 20, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; z-index: 20;
+}
+.pr-logo { font-weight: 900; font-size: 18px; letter-spacing: .5px; }
+.pr-logo b { color: var(--cyan); text-shadow: 0 0 12px rgba(34, 211, 238, .6); }
+.pr-balance {
+  flex: 1; display: flex; align-items: center; gap: 8px;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 14px; padding: 6px 6px 6px 12px;
+}
+.pr-balance .coin { color: var(--gold); font-weight: 800; }
+.pr-plus {
+  margin-left: auto; width: 34px; height: 30px; border-radius: 10px; border: 0;
+  background: linear-gradient(135deg, var(--primary), var(--pink));
+  color: #fff; font-size: 20px; font-weight: 700;
+  box-shadow: 0 0 14px rgba(139, 92, 246, .6);
+}
+.pr-icon-btn {
+  width: 38px; height: 38px; border-radius: 12px;
+  background: var(--card); border: 1px solid var(--line); color: var(--text);
+  display: grid; place-items: center;
+}
+.pr-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--primary));
+  display: grid; place-items: center; font-weight: 800;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--cyan);
+}
+
+/* ---------- LIVE / Top drop ---------- */
+.pr-live {
+  margin: 14px 12px; padding: 12px;
+  border-radius: 20px; position: relative;
+  background: linear-gradient(180deg, var(--card-2), var(--bg-2));
+  border: 1.5px solid transparent;
+  background-clip: padding-box;
+}
+.pr-live::before {
+  content: ""; position: absolute; inset: -1.5px; z-index: -1; border-radius: 21px;
+  background: linear-gradient(135deg, var(--cyan), var(--primary), var(--pink));
+  box-shadow: 0 0 22px rgba(139, 92, 246, .45);
+}
+.pr-live-badge {
+  position: absolute; top: -10px; left: 14px;
+  background: var(--bg); border: 1px solid var(--pink); color: var(--pink);
+  font-size: 11px; font-weight: 800; padding: 2px 10px; border-radius: 999px;
+}
+.pr-live-badge::before {
+  content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 6px;
+  border-radius: 50%; background: var(--pink); animation: pr-pulse 1.2s infinite;
+}
+@keyframes pr-pulse { 50% { opacity: .25; transform: scale(.7); } }
+
+.pr-topdrop {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(0, 0, 0, .25); border-radius: 14px; padding: 10px;
+}
+.pr-topdrop .label { font-size: 11px; color: var(--gold); font-weight: 800; }
+.pr-topdrop .name { font-weight: 800; font-size: 14px; }
+.pr-topdrop .price {
+  margin-left: auto; padding: 6px 12px; border-radius: 12px;
+  background: rgba(251, 191, 36, .12); border: 1px solid rgba(251, 191, 36, .5);
+  color: var(--gold); font-weight: 900;
+}
+
+.pr-strip { display: flex; gap: 8px; overflow-x: auto; padding: 10px 2px 2px; scrollbar-width: none; }
+.pr-strip::-webkit-scrollbar { display: none; }
+.pr-drop {
+  flex: 0 0 62px; height: 70px; border-radius: 14px; position: relative;
+  background: var(--card); border: 1.5px solid var(--rc, var(--line));
+  display: grid; place-items: center; overflow: hidden;
+  box-shadow: inset 0 -18px 24px -14px var(--rc, transparent);
+}
+.pr-drop img { width: 44px; height: 44px; object-fit: contain; }
+.pr-drop[data-rarity="COMMON"]    { --rc: var(--rarity-common); }
+.pr-drop[data-rarity="UNCOMMON"]  { --rc: var(--rarity-uncommon); }
+.pr-drop[data-rarity="RARE"]      { --rc: var(--rarity-rare); }
+.pr-drop[data-rarity="EPIC"]      { --rc: var(--rarity-epic); }
+.pr-drop[data-rarity="LEGENDARY"] { --rc: var(--rarity-legendary); }
+.pr-drop[data-rarity="MYTHIC"]    { --rc: var(--rarity-mythic); }
+
+/* ---------- Taymer + promo ---------- */
+.pr-timer {
+  margin: 0 12px; display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; border-radius: 20px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, .18), rgba(34, 211, 238, .08));
+  border: 1px solid var(--line);
+}
+.pr-timer .cap { font-size: 11px; color: var(--muted); font-weight: 700; letter-spacing: 1px; }
+.pr-timer .time {
+  font-size: 34px; font-weight: 900; font-variant-numeric: tabular-nums;
+  background: linear-gradient(90deg, var(--cyan), var(--pink));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.pr-promo {
+  margin: 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+}
+.pr-promo-code {
+  flex: 1; text-align: center; padding: 12px; border-radius: 14px; font-weight: 900; letter-spacing: 1px;
+  background: var(--card); border: 1px dashed var(--primary-2); color: var(--primary-2);
+}
+.pr-promo-bonus {
+  padding: 12px 16px; border-radius: 14px; font-weight: 900; color: #1b1033;
+  background: linear-gradient(135deg, var(--gold), #fb923c);
+  box-shadow: 0 0 18px rgba(251, 191, 36, .35);
+}
+
+/* ---------- Katta banner ---------- */
+.pr-banner {
+  margin: 12px; padding: 20px 16px; border-radius: 22px; min-height: 170px;
+  position: relative; overflow: hidden;
+  background:
+    radial-gradient(300px 160px at 90% 100%, rgba(244, 114, 182, .45), transparent 70%),
+    radial-gradient(260px 160px at 0% 0%, rgba(34, 211, 238, .30), transparent 70%),
+    linear-gradient(135deg, #1a0b3d, #0d0720);
+  border: 1px solid var(--line);
+}
+.pr-banner h2 { font-size: 30px; line-height: 1; font-weight: 900; margin: 0; }
+.pr-banner h2 span { color: var(--cyan); text-shadow: 0 0 16px rgba(34, 211, 238, .7); }
+.pr-banner p { color: var(--muted); font-size: 12px; max-width: 60%; margin: 8px 0 14px; }
+.pr-btn {
+  display: inline-block; padding: 12px 18px; border-radius: 14px; border: 0;
+  font-weight: 900; color: #fff; letter-spacing: .5px;
+  background: linear-gradient(135deg, var(--primary), var(--pink));
+  box-shadow: 0 6px 22px rgba(139, 92, 246, .55);
+}
+.pr-btn:active { transform: scale(.97); }
+
+/* ---------- Keys kartalari ---------- */
+.pr-case {
+  border-radius: 20px; padding: 14px; text-align: center;
+  background: linear-gradient(180deg, var(--card-2), var(--card));
+  border: 1px solid var(--line);
+  transition: transform .15s, box-shadow .15s;
+}
+.pr-case:active { transform: scale(.97); box-shadow: 0 0 22px rgba(139, 92, 246, .45); }
+.pr-case .price {
+  display: inline-block; margin-top: 8px; padding: 5px 14px; border-radius: 12px;
+  font-weight: 900; color: #1b1033; background: linear-gradient(135deg, var(--gold), #fb923c);
+}
+
+/* ---------- Pastki menyu ---------- */
+.pr-nav {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+  display: flex; justify-content: space-around; padding: 8px 4px 12px;
+  background: rgba(10, 6, 20, .92); backdrop-filter: blur(12px);
+  border-top: 1px solid var(--line);
+}
+.pr-nav a { color: var(--muted); font-size: 11px; font-weight: 700; text-align: center; }
+.pr-nav a.active { color: var(--cyan); text-shadow: 0 0 10px rgba(34, 211, 238, .6); }
+
+
+
+/* ===== Keys detail + ruletka — index.css oxiriga qo'shing ===== */
+
+/* Noyoblik rangi (har qanday element uchun) */
+[data-rarity='COMMON'] { --rc: var(--rarity-common); }
+[data-rarity='UNCOMMON'] { --rc: var(--rarity-uncommon); }
+[data-rarity='RARE'] { --rc: var(--rarity-rare); }
+[data-rarity='EPIC'] { --rc: var(--rarity-epic); }
+[data-rarity='LEGENDARY'] { --rc: var(--rarity-legendary); }
+[data-rarity='MYTHIC'] { --rc: var(--rarity-mythic); }
+
+/* Keys kartasi */
+.pr-case-img { display: grid; place-items: center; height: 96px; }
+.pr-case-img img { max-height: 96px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 6px 14px rgba(139, 92, 246, 0.5)); }
+
+/* Detail sahifasidagi katta rasm */
+.pr-case-hero {
+  display: grid; place-items: center; padding: 24px; border-radius: 24px; min-height: 200px;
+  background:
+    radial-gradient(240px 160px at 50% 60%, rgba(139, 92, 246, 0.35), transparent 70%),
+    var(--bg-2);
+  border: 1px solid var(--line);
+}
+.pr-case-hero img { max-height: 190px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 24px rgba(139, 92, 246, 0.6)); }
+
+/* Sovrin kartasi */
+.pr-prize {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 12px 8px; border-radius: 18px; text-align: center;
+  background:
+    radial-gradient(120px 90px at 50% 0%, color-mix(in srgb, var(--rc, #888) 28%, transparent), transparent 75%),
+    var(--card);
+  border: 1.5px solid var(--rc, var(--line));
+  box-shadow: inset 0 -26px 30px -24px var(--rc, transparent);
+}
+.pr-prize-name { font-size: 12px; font-weight: 800; line-height: 1.15; }
+.pr-prize-val { font-size: 12px; font-weight: 900; color: var(--gold); }
+.pr-prize-chance { font-size: 10px; color: var(--muted); font-weight: 700; }
+
+/* Mablag' yetarli emas */
+.pr-nofunds {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 16px; border-radius: 18px; font-weight: 900; color: var(--muted);
+  background: var(--card); border: 1px solid var(--line);
+}
+.pr-nofunds b { color: var(--text); background: var(--bg-2); padding: 4px 12px; border-radius: 12px; }
+
+/* Ruletka */
+.pr-reel {
+  position: relative; overflow: hidden; border-radius: 18px;
+  background: var(--bg-2); border: 1px solid var(--line);
+}
+.pr-reel::before,
+.pr-reel::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 36px; z-index: 2; pointer-events: none;
+}
+.pr-reel::before { left: 0; background: linear-gradient(90deg, var(--bg-2), transparent); }
+.pr-reel::after { right: 0; background: linear-gradient(270deg, var(--bg-2), transparent); }
+.pr-reel-marker {
+  position: absolute; left: 50%; top: 0; bottom: 0; width: 3px; margin-left: -1.5px; z-index: 3;
+  background: linear-gradient(var(--cyan), var(--pink));
+  box-shadow: 0 0 14px var(--cyan);
+}
+.pr-reel-track { display: flex; gap: 8px; height: 100%; align-items: center; will-change: transform; }
+.pr-reel-item {
+  flex: 0 0 auto; height: calc(100% - 14px); border-radius: 14px; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  background: var(--card); border: 1.5px solid var(--rc, var(--line));
+  box-shadow: inset 0 -22px 26px -18px var(--rc, transparent);
+}
+.pr-reel-name { font-size: 10px; font-weight: 800; max-width: 84px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pr-reel-win { transform: scale(1.06); box-shadow: 0 0 24px var(--rc), inset 0 -22px 26px -18px var(--rc); z-index: 1; }
+
