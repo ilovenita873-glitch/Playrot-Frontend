@@ -56,22 +56,30 @@ export default function Home() {
     );
   }
 
+  const canApply = !promoBusy && promo.trim().length >= 3;
+
   return (
     <div className="space-y-4 pb-4">
       {/* Jonli yutuqlar: backendda /cases/live yo'q, shuning uchun hozircha bo'sh */}
       <LiveBlock drops={[]} />
 
       <section className="px-3">
-        <div className="card flex items-center gap-2 p-3">
+        <div className="flex items-center gap-2 rounded-2xl border border-[color-mix(in_srgb,currentColor_15%,transparent)] bg-[color-mix(in_srgb,currentColor_6%,transparent)] p-2 backdrop-blur">
           <input
-            className="input"
-            placeholder="PROMOKOD"
+            className="min-w-0 flex-1 bg-transparent px-3 py-2 text-sm font-bold uppercase tracking-widest text-inherit outline-none placeholder:font-semibold placeholder:normal-case placeholder:tracking-normal placeholder:opacity-50"
+            placeholder="Promokod kiriting"
             value={promo}
             maxLength={32}
+            autoComplete="off"
             onChange={(e) => setPromo(e.target.value.toUpperCase())}
+            onKeyDown={(e) => e.key === 'Enter' && void activate()}
           />
-          <button className="btn-gold shrink-0" disabled={promoBusy || promo.trim().length < 3} onClick={activate}>
-            OK
+          <button
+            className="btn-gold shrink-0 px-5 py-2 text-sm transition active:scale-95 disabled:opacity-40"
+            disabled={!canApply}
+            onClick={activate}
+          >
+            {promoBusy ? '...' : 'OK'}
           </button>
         </div>
       </section>
@@ -92,7 +100,6 @@ export default function Home() {
           </div>
         )}
       </section>
-
     </div>
   );
 }
